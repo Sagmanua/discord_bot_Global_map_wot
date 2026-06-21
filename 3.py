@@ -193,8 +193,6 @@ def find_map_image(scraped_map_name):
 
 @bot.command(name="allmatches")
 async def allmatches(ctx):
-    """Command to scrape and return complete structural details for all map battles."""
-    await ctx.send(f"🔍 Resolving clan ID for `[{CLAN_TAG}]` and fetching all upcoming match layouts...")
     
     # 1. Dynamically get the Clan ID using the tag
     clan_id = get_clan_id_by_tag(CLAN_TAG)
@@ -208,7 +206,7 @@ async def allmatches(ctx):
         await ctx.send(f"❌ No upcoming Global Map matches found for `[{CLAN_TAG}]`.")
         return
         
-    await ctx.send(f"📅 Found **{len(all_battles)}** upcoming battle(s). Processing live page datasets...")
+    await ctx.send(f"📅 Found **{len(all_battles)}** upcoming battle.")
 
     # 3. Loop through every scheduled battle found
     for index, match in enumerate(all_battles, start=1):
@@ -261,14 +259,14 @@ async def allmatches(ctx):
         
         # Base 1 / Left Column
         embed.add_field(
-            name="🔴 Base 1 (Left Side / Spawn 1)",
+            name="🟢 Base 1",
             value=f"**Clan**: {left_clan['tag']} {left_clan['name']}\n**Elo Rating**: `{left_clan['elo']}`",
             inline=True
         )
         
         # Base 2 / Right Column
         embed.add_field(
-            name="🟢 Base 2 (Right Side / Spawn 2)",
+            name="🔴 Base 2",
             value=f"**Clan**: {right_clan['tag']} {right_clan['name']}\n**Elo Rating**: `{right_clan['elo']}`",
             inline=True
         )
