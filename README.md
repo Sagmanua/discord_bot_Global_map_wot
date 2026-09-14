@@ -1,0 +1,1 @@
+This repo create to show next batle on global map in discord.
